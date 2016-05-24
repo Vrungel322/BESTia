@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(decodedByte.getWidth(), decodedByte.getHeight());
         layoutParams.setMargins(236, 0 , 0, 1790);
         ivPst0.setLayoutParams(layoutParams);
+        ivPst0.setRotation(-171.887f);
         ivPst0.setImageBitmap(decodedByte);
     }
 
