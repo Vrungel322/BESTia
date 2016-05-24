@@ -1,6 +1,11 @@
 package nanddgroup.bestia.Utils;
 
 import android.content.Context;
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,5 +32,22 @@ public class JsonHelper {
             return null;
         }
         return json;
+    }
+
+    public static String[] getB64DataFromJson(String json) {
+        String[] result = new String[4];
+        try {
+            JSONObject obj = new JSONObject(json);
+            JSONObject nfo = obj.getJSONObject("nfo");
+            JSONArray nws = nfo.getJSONArray("nws");
+            for (int i = 0; i < nws.length(); i++) {
+                JSONObject t0 = nws.getJSONObject(i);
+                result[i] = t0.getString("pst");
+                Log.wtf("wtf", i+"");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }
