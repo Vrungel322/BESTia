@@ -16,14 +16,22 @@ import nanddgroup.bestia.Utils.JsonHelper;
 public class MainActivity extends AppCompatActivity {
     public static final int W_POSTER = 230;
     public static final int H_POSTER = 318;
-    public static final int X_POSTER1 = 236;
-    public static final int Y_POSTER1 = 1790;
-    public static final int X_POSTER2 = 440;
-    public static final int Y_POSTER2 = 1850;
+    public static final int X_POSTER0 = 236;
+    public static final int Y_POSTER0 = 1790;
+    public static final int X_POSTER1 = 440;
+    public static final int Y_POSTER1 = 1850;
+    public static final int X_POSTER2 = 190;
+    public static final int Y_POSTER2 = 2370;
+    public static final int X_POSTER3 = 478;
+    public static final int Y_POSTER3 = 2369;
     @Bind(R.id.ivPst0)
     ImageView ivPst0;
     @Bind(R.id.ivPst1)
     ImageView ivPst1;
+    @Bind(R.id.ivPst2)
+    ImageView ivPst2;
+    @Bind(R.id.ivPst3)
+    ImageView ivPst3;
     @Bind(R.id.imageView)
     ImageView imageView;
     String[] pst;
@@ -38,8 +46,10 @@ public class MainActivity extends AppCompatActivity {
 
         Log.wtf("wtf", pst[0]);
 
-        poster_1(pst[0], X_POSTER1, Y_POSTER1, ivPst0, 3f);
-        poster_1(pst[1], X_POSTER2, Y_POSTER2, ivPst1, -1f);
+        poster_1(pst[0], X_POSTER0, Y_POSTER0, ivPst0, 3f);
+        poster_1(pst[1], X_POSTER1, Y_POSTER1, ivPst1, -1f);
+        poster_1(pst[2], X_POSTER2, Y_POSTER2, ivPst2, 2f);
+        poster_1(pst[3], X_POSTER3, Y_POSTER3, ivPst3, 2.5f);
     }
 
     private void poster_1(String pst_cur, int x_location, int y_location, ImageView iv, float angle) {
