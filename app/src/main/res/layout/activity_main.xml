@@ -5,16 +5,64 @@
     android:layout_height="match_parent"
     tools:context="nanddgroup.bestia.MainActivity">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ivPst0"
-            android:layout_gravity="center" />
-    </FrameLayout>
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivMainPart1"
+                android:layout_width="wrap_content"
+                android:layout_height="3300px"
+                android:background="@drawable/main_part1"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/ivMainPart2"
+                android:layout_width="wrap_content"
+                android:layout_height="200px"
+                android:layout_below="@+id/ivMainPart1"
+                android:background="@drawable/main_part2"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/ivMainPart3"
+                android:layout_width="wrap_content"
+                android:layout_height="2500px"
+                android:layout_below="@+id/ivMainPart2"
+                android:background="@drawable/main_part3"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ivPst0" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ivPst1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ivPst2" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ivPst3" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ivSticks"/>
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
