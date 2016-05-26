@@ -18,10 +18,10 @@ public class JsonHelper {
     public JsonHelper(Context context) {
     }
 
-    public static String loadJSONFromAsset(Context context) {
+    public static String loadJSONFromAsset(Context context, String asset_name) {
         String json = null;
         try {
-            InputStream is = context.getAssets().open("uk-main.json");
+            InputStream is = context.getAssets().open(asset_name);
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -35,15 +35,17 @@ public class JsonHelper {
     }
 
     public static String[] getB64DataFromJson(String json) {
-        String[] result = new String[4];
+
+        String[] result = null;
         try {
             JSONObject obj = new JSONObject(json);
             JSONObject nfo = obj.getJSONObject("nfo");
             JSONArray nws = nfo.getJSONArray("nws");
+            result = new String[nws.length()];
             for (int i = 0; i < nws.length(); i++) {
                 JSONObject t0 = nws.getJSONObject(i);
                 result[i] = t0.getString("pst");
-                Log.wtf("wtf", i+"");
+                Log.wtf("wtf", i + "");
             }
         } catch (JSONException e) {
             e.printStackTrace();
