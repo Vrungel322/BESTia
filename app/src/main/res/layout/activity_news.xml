@@ -29,7 +29,7 @@
 
                 <Button
                     android:id="@+id/bBackToMain"
-                    android:layout_width="150px"
+                    android:layout_width="180px"
                     android:layout_height="match_parent"
                     android:background="#00aaaaaa" />
 
@@ -38,8 +38,7 @@
                     android:id="@+id/lvNews"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="right"
-                    android:background="#b9d46262"/>
+                    android:gravity="right" />
             </LinearLayout>
 
             <ImageView

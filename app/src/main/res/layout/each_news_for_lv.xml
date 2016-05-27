@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="624px"
-    android:layout_height="950px"
-    android:orientation="vertical"
-    android:layout_gravity="right">
+    android:layout_width="850px"
+    android:layout_height="1250px"
+    android:layout_gravity="right"
+    android:layout_marginLeft="100px"
+    android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -11,10 +12,17 @@
         android:layout_gravity="center_horizontal">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ivHeader"
-            android:layout_gravity="center_horizontal|top" />
+            android:id="@+id/ivFrame"
+            android:layout_width="810px"
+            android:layout_height="1240px"
+            android:layout_gravity="center" />
+
+        <ImageView
+            android:id="@+id/ivPoster"
+            android:layout_width="751px"
+            android:layout_height="1150px"
+            android:layout_gravity="center"
+            android:foregroundGravity="right" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -22,18 +30,12 @@
             android:layout_gravity="center">
 
             <ImageView
-                android:layout_width="562px"
-                android:layout_height="794px"
-                android:id="@+id/ivFrame"
-                android:background="@drawable/news_poster_frame"
-                android:layout_gravity="center" />
+                android:id="@+id/ivHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_marginTop="10px" />
 
-            <ImageView
-                android:layout_width="610px"
-                android:layout_height="850px"
-                android:id="@+id/ivPoster"
-                android:layout_gravity="center" />
         </FrameLayout>
-
     </FrameLayout>
 </LinearLayout>

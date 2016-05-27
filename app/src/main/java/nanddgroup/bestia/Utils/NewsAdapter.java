@@ -36,18 +36,23 @@ public class NewsAdapter extends ArrayAdapter<Bitmap> {
         else {
             rootView = convertView;
         }
-        ImageView ivHeader = (ImageView) rootView.findViewById(R.id.ivHeader);
-//        Toast.makeText(context, "getView" + position, Toast.LENGTH_SHORT).show();
-        if (position % 2 == 0) {
-            ivHeader.setImageResource(R.drawable.news_poster_sprt_1);
-        }
-        else {
-            ivHeader.setImageResource(R.drawable.news_poster_sprt_0);
-        }
         ImageView ivFrame = (ImageView) rootView.findViewById(R.id.ivFrame);
         ivFrame.setImageResource(R.drawable.news_poster_frame);
         ImageView ivPoster = (ImageView) rootView.findViewById(R.id.ivPoster);
         ivPoster.setImageBitmap(alNewsPosters.get(position));
+        ImageView ivHeader = (ImageView) rootView.findViewById(R.id.ivHeader);
+//        Toast.makeText(context, "getView" + position, Toast.LENGTH_SHORT).show();
+        if (position % 2 == 0) {
+            ivHeader.setImageResource(R.drawable.news_poster_sprt_0);
+            ivFrame.setRotation(1f);
+            ivPoster.setRotation(1f);
+        }
+        else {
+            ivHeader.setImageResource(R.drawable.news_poster_sprt_1);
+            ivFrame.setRotation(-0.7f);
+            ivPoster.setRotation(-0.7f);
+        }
+
 
         return rootView;
     }
