@@ -1,16 +1,19 @@
 package nanddgroup.bestia;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import nanddgroup.bestia.Utils.JsonHelper;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView ivPst3;
     @Bind(R.id.ivSticks)
     ImageView ivSticks;
-
-
+    @Bind(R.id.bNews)
+    Button bNews;
     String[] pst;
 
     @Override
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
         pst = new String[7];
         pst = JsonHelper.getB64DataFromJson(JsonHelper.loadJSONFromAsset(getApplicationContext(), "uk-main.json"));
 
@@ -66,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @OnClick(R.id.bNews)
+    public void bNewsClicked() {
+        Log.wtf("wtf", "CLicked");
+        startActivity(new Intent(MainActivity.this, NewsActivity.class));
+        finish();
+    }
 
     private void poster_1(String pst_cur, int x_location, int y_location, ImageView iv, float angle) {
         byte[] decodedString = Base64.decode(pst_cur.getBytes(), Base64.DEFAULT);

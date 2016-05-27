@@ -9,7 +9,8 @@
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -39,29 +40,36 @@
                 android:scaleType="fitXY" />
 
             <ImageView
+                android:id="@+id/ivPst0"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ivPst0" />
+                android:layout_height="wrap_content" />
 
             <ImageView
+                android:id="@+id/ivPst1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ivPst1" />
+                android:layout_height="wrap_content" />
 
             <ImageView
+                android:id="@+id/ivPst2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ivPst2" />
+                android:layout_height="wrap_content" />
 
             <ImageView
+                android:id="@+id/ivPst3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ivPst3" />
+                android:layout_height="wrap_content" />
 
             <ImageView
+                android:id="@+id/ivSticks"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ivSticks"/>
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/bNews"
+                android:layout_width="match_parent"
+                android:layout_height="1000px"
+                android:layout_marginTop="500px"
+                android:background="@drawable/news_button_style" />
 
         </RelativeLayout>
     </ScrollView>
