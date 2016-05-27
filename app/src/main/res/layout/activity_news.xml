@@ -16,24 +16,38 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/news_best"
-            android:layout_marginTop="18px" />
-
-        <LinearLayout
-            android:orientation="horizontal"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center">
+            android:foregroundGravity="center">
 
-            <Button
-                android:layout_width="150px"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/bBackToMain"
-                android:background="#00aaaaaa"/>
-        </LinearLayout>
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/bBackToMain"
+                    android:layout_width="180px"
+                    android:layout_height="match_parent"
+                    android:background="#00aaaaaa" />
+
+
+                <ListView
+                    android:id="@+id/lvNews"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/news_best"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18px" />
+
+        </FrameLayout>
     </FrameLayout>
 
 </RelativeLayout>

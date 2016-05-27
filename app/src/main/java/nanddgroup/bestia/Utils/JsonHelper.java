@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 /**
  * Created by Nikita on 24.05.2016.
@@ -34,22 +35,29 @@ public class JsonHelper {
         return json;
     }
 
-    public static String[] getB64DataFromJson(String json) {
+    public static ArrayList<String> getB64DataFromJson(String json) {
 
-        String[] result = null;
+        ArrayList<String> result = null;
         try {
             JSONObject obj = new JSONObject(json);
             JSONObject nfo = obj.getJSONObject("nfo");
             JSONArray nws = nfo.getJSONArray("nws");
-            result = new String[nws.length()];
+            result = new ArrayList<String>();
             for (int i = 0; i < nws.length(); i++) {
                 JSONObject t0 = nws.getJSONObject(i);
-                result[i] = t0.getString("pst");
+                result.add(t0.getString("pst"));
                 Log.wtf("wtf", i + "");
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public static int getCount(String json) throws JSONException {
+        JSONObject obj = new JSONObject(json);
+        JSONObject nfo = obj.getJSONObject("nfo");
+        JSONArray nws = nfo.getJSONArray("nws");
+        return nws.length();
     }
 }

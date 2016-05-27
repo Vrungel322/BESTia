@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -45,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView ivSticks;
     @Bind(R.id.bNews)
     Button bNews;
-    String[] pst;
+    private ArrayList<String> pst;
+    private String json;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +56,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
-        pst = new String[7];
-        pst = JsonHelper.getB64DataFromJson(JsonHelper.loadJSONFromAsset(getApplicationContext(), "uk-main.json"));
+        pst = new ArrayList<String>();
+        json = JsonHelper.loadJSONFromAsset(getApplicationContext(), "uk-main.json");
+        pst = JsonHelper.getB64DataFromJson(json);
 
-        Log.wtf("wtf", pst[0]);
+        Log.wtf("wtf", pst.get(0));
 
-        poster_1(pst[0], X_POSTER0, Y_POSTER0, ivPst0, 3f);
-        poster_1(pst[1], X_POSTER1, Y_POSTER1, ivPst1, -1f);
-        poster_1(pst[2], X_POSTER2, Y_POSTER2, ivPst2, 2f);
-        poster_1(pst[3], X_POSTER3, Y_POSTER3, ivPst3, 2.5f);
+        poster_1(pst.get(0), X_POSTER0, Y_POSTER0, ivPst0, 3f);
+        poster_1(pst.get(1), X_POSTER1, Y_POSTER1, ivPst1, -1f);
+        poster_1(pst.get(2), X_POSTER2, Y_POSTER2, ivPst2, 2f);
+        poster_1(pst.get(3), X_POSTER3, Y_POSTER3, ivPst3, 2.5f);
         ivSticks.setScaleX(0.46f);
         ivSticks.setScaleY(0.46f);
         ivSticks.setX(-100);
