@@ -1,10 +1,12 @@
 package nanddgroup.bestia;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
@@ -29,13 +31,12 @@ public class NewsActivity extends AppCompatActivity {
     ImageView news;
     @Bind(R.id.bBackToMain)
     Button bBackToMain;
-//    @Bind(R.id.lvNews)
-//    ListView lvNews;
     private NewsAdapter nA;
     private ArrayList<String> pst;
     private String json;
     private ArrayList<Bitmap> alBitmaps;
-    private ListView lvNews;
+    @Bind(R.id.lvNews)
+    ListView lvNews;
 
 
     @Override
@@ -46,24 +47,8 @@ public class NewsActivity extends AppCompatActivity {
         this.overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
         pst = new ArrayList<String>();
         alBitmaps = new ArrayList<Bitmap>();
-
-
-        initMainBackground();
-        json = JsonHelper.loadJSONFromAsset(getApplicationContext(), "uk-news.json");
-        pst = JsonHelper.getB64DataFromJson(json);
-        try {
-            for (int i = 0; i < JsonHelper.getCount(json); i++){
-                alBitmaps.add(poster_2(pst.get(i)));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        nA = new NewsAdapter(getApplicationContext(), R.layout.each_news_for_lv, alBitmaps);
-        lvNews = (ListView) findViewById(R.id.lvNews);
-        lvNews.setAdapter(nA);
-
-
-
+        MyAsyncTask myAsyncTask = new MyAsyncTask();
+        myAsyncTask.execute();
     }
 
     private Bitmap poster_2(String pst_cur) {
@@ -74,7 +59,7 @@ public class NewsActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.bBackToMain)
-    public void bBackToMainClicked(){
+    public void bBackToMainClicked() {
         startActivity(new Intent(NewsActivity.this, MainActivity.class));
         finish();
     }
@@ -96,6 +81,43 @@ public class NewsActivity extends AppCompatActivity {
         Drawable myDrawable1 = getResources().getDrawable(R.drawable.news_best);
         Bitmap news_background1 = ((BitmapDrawable) myDrawable1).getBitmap();
         news_best.setImageBitmap(news_background1);
+    }
+
+    private class MyAsyncTask extends AsyncTask{
+        ProgressDialog mProgressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            initMainBackground();
+            mProgressDialog = new ProgressDialog(NewsActivity.this, R.style.AppTheme);
+            mProgressDialog.setIndeterminate(true);
+            mProgressDialog.setProgressStyle(android.R.attr.progressBarStyleSmall);
+            mProgressDialog.setMessage(getString(R.string.progress_authenticate));
+            mProgressDialog.show();
+        }
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            json = JsonHelper.loadJSONFromAsset(getApplicationContext(), "uk-news.json");
+            pst = JsonHelper.getB64DataFromJson(json);
+            try {
+                for (int i = 0; i < JsonHelper.getCount(json); i++) {
+                    alBitmaps.add(poster_2(pst.get(i)));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            nA = new NewsAdapter(getApplicationContext(), R.layout.each_news_for_lv, alBitmaps);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+            lvNews.setAdapter(nA);
+            mProgressDialog.dismiss();
+        }
     }
 
 }
