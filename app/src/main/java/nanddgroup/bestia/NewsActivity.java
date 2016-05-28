@@ -83,18 +83,22 @@ public class NewsActivity extends AppCompatActivity {
         news_best.setImageBitmap(news_background1);
     }
 
-    private class MyAsyncTask extends AsyncTask{
+    private class MyAsyncTask extends AsyncTask {
         ProgressDialog mProgressDialog;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             initMainBackground();
-            mProgressDialog = new ProgressDialog(NewsActivity.this, R.style.AppTheme);
-            mProgressDialog.setIndeterminate(true);
-            mProgressDialog.setProgressStyle(android.R.attr.progressBarStyleSmall);
-            mProgressDialog.setMessage(getString(R.string.progress_authenticate));
-            mProgressDialog.show();
+            if (mProgressDialog != null) {
+                mProgressDialog.dismiss();
+            } else {
+                mProgressDialog = new ProgressDialog(NewsActivity.this);
+                mProgressDialog.setIndeterminate(true);
+                mProgressDialog.setProgressStyle(android.R.attr.progressBarStyleSmall);
+                mProgressDialog.setMessage(getString(R.string.progress_authenticate));
+                mProgressDialog.show();
+            }
         }
 
         @Override
