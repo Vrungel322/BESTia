@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import nanddgroup.bestia.Utils.JsonHelper;
+import nanddgroup.bestia.Utils.SizeHelper;
 
 public class MainActivity extends AppCompatActivity {
     public static final int W_POSTER = 230;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     Button bNews;
     private ArrayList<String> pst;
     private String json;
+    private SizeHelper sizeHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +62,20 @@ public class MainActivity extends AppCompatActivity {
         pst = new ArrayList<String>();
         json = JsonHelper.loadJSONFromAsset(getApplicationContext(), "uk-main.json");
         pst = JsonHelper.getB64DataFromJson(json);
+        sizeHelper = new SizeHelper(this);
+        if (sizeHelper.getScreenType() == SizeHelper.SCREEN_FULLHD){
+            posForFHD();
+        }
+        if (sizeHelper.getScreenType() == SizeHelper.SCREEN_HD){
+            posForHD();
+        }
 
-        Log.wtf("wtf", pst.get(0));
 
+
+    }
+
+    private void posForHD() {
+        ivMainPart1.setImageBitmap(SizeHelper.bitmapLoader(getResources(), R.drawable.main_part1, 0.487d));
         poster_1(pst.get(0), X_POSTER0, Y_POSTER0, ivPst0, 3f);
         poster_1(pst.get(1), X_POSTER1, Y_POSTER1, ivPst1, -1f);
         poster_1(pst.get(2), X_POSTER2, Y_POSTER2, ivPst2, 2f);
@@ -71,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         ivSticks.setX(-100);
         ivSticks.setY(500);
         ivSticks.setImageResource(R.drawable.main_sticks);
-
+        Toast.makeText(getApplicationContext(), "posForHD", Toast.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.bNews)
@@ -80,6 +94,21 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, NewsActivity.class));
         finish();
     }
+
+    private void posForFHD() {
+
+        ivMainPart1.setImageBitmap(SizeHelper.bitmapLoader(getResources(), R.drawable.main_part1, 0.487d));
+        poster_1(pst.get(0), X_POSTER0, Y_POSTER0, ivPst0, 3f);
+        poster_1(pst.get(1), X_POSTER1, Y_POSTER1, ivPst1, -1f);
+        poster_1(pst.get(2), X_POSTER2, Y_POSTER2, ivPst2, 2f);
+        poster_1(pst.get(3), X_POSTER3, Y_POSTER3, ivPst3, 2.5f);
+        ivSticks.setScaleX(0.46f);
+        ivSticks.setScaleY(0.46f);
+        ivSticks.setX(-100);
+        ivSticks.setY(500);
+        ivSticks.setImageResource(R.drawable.main_sticks);
+    }
+
 
     private void poster_1(String pst_cur, int x_location, int y_location, ImageView iv, float angle) {
         byte[] decodedString = Base64.decode(pst_cur.getBytes(), Base64.DEFAULT);

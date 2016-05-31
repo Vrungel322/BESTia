@@ -19,8 +19,7 @@
             <ImageView
                 android:id="@+id/ivMainPart1"
                 android:layout_width="wrap_content"
-                android:layout_height="3300px"
-                android:background="@drawable/main_part1"
+                android:layout_height="wrap_content"
                 android:scaleType="fitXY" />
 
             <ImageView
