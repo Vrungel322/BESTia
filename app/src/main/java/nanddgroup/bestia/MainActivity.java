@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,18 +18,35 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import nanddgroup.bestia.Utils.JsonHelper;
+import nanddgroup.bestia.Utils.SizeHelper;
 
 public class MainActivity extends AppCompatActivity {
-    public static final int W_POSTER = 230;
-    public static final int H_POSTER = 318;
-    public static final int X_POSTER0 = 236;
-    public static final int Y_POSTER0 = 940;
-    public static final int X_POSTER1 = 440;
-    public static final int Y_POSTER1 = 1000;
-    public static final int X_POSTER2 = 150;
-    public static final int Y_POSTER2 = 5000;
-    public static final int X_POSTER3 = 578;
-    public static final int Y_POSTER3 = 4998;
+    public static final int W_POSTER_FHD = 230;
+    public static final int H_POSTER_FHD = 318;
+
+    public static final int X_POSTER0_FHD = 246;
+    public static final int Y_POSTER0_FHD = 960;
+
+    public static final int X_POSTER1_FHD = 520;
+    public static final int Y_POSTER1_FHD = 1020;
+
+    public static final int X_POSTER2_FHD = 150;
+    public static final int Y_POSTER2_FHD = 5130;
+
+    public static final int X_POSTER3_FHD = 558;
+    public static final int Y_POSTER3_FHD = 5122;
+//-------------------------------------------------------------------
+    public static final int X_POSTER0_HD = 116;
+    public static final int Y_POSTER0_HD = 590;
+
+    public static final int X_POSTER1_HD = 310;
+    public static final int Y_POSTER1_HD = 630;
+
+    public static final int X_POSTER2_HD = 80;
+    public static final int Y_POSTER2_HD = 3420;
+
+    public static final int X_POSTER3_HD = 345;
+    public static final int Y_POSTER3_HD = 3420;
     @Bind(R.id.ivMainPart1)
     ImageView ivMainPart1;
     @Bind(R.id.ivMainPart2)
@@ -49,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     Button bNews;
     private ArrayList<String> pst;
     private String json;
+    private SizeHelper sizeHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,18 +78,15 @@ public class MainActivity extends AppCompatActivity {
         pst = new ArrayList<String>();
         json = JsonHelper.loadJSONFromAsset(getApplicationContext(), "uk-main.json");
         pst = JsonHelper.getB64DataFromJson(json);
+        sizeHelper = new SizeHelper(this);
+        if (sizeHelper.getScreenType() == SizeHelper.SCREEN_FULLHD){
+            posForFHD();
+        }
+        if (sizeHelper.getScreenType() == SizeHelper.SCREEN_HD){
+            posForHD();
+        }
 
-        Log.wtf("wtf", pst.get(0));
 
-        poster_1(pst.get(0), X_POSTER0, Y_POSTER0, ivPst0, 3f);
-        poster_1(pst.get(1), X_POSTER1, Y_POSTER1, ivPst1, -1f);
-        poster_1(pst.get(2), X_POSTER2, Y_POSTER2, ivPst2, 2f);
-        poster_1(pst.get(3), X_POSTER3, Y_POSTER3, ivPst3, 2.5f);
-        ivSticks.setScaleX(0.46f);
-        ivSticks.setScaleY(0.46f);
-        ivSticks.setX(-100);
-        ivSticks.setY(500);
-        ivSticks.setImageResource(R.drawable.main_sticks);
 
     }
 
@@ -81,14 +97,49 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+    private void posForHD() {
+        ivMainPart1.setImageBitmap(SizeHelper.bitmapLoader(getResources(), R.drawable.main_part1, 0.479d));
+        ivMainPart3.setImageBitmap(SizeHelper.bitmapLoader(getResources(), R.drawable.main_part3, 0.479d));
+        poster_1(pst.get(0), X_POSTER0_HD, Y_POSTER0_HD, ivPst0, 3f);
+        poster_1(pst.get(1), X_POSTER1_HD, Y_POSTER1_HD, ivPst1, -1f);
+        poster_1(pst.get(2), X_POSTER2_HD, Y_POSTER2_HD, ivPst2, 2f);
+        poster_1(pst.get(3), X_POSTER3_HD, Y_POSTER3_HD, ivPst3, 2.5f);
+        ivSticks.setImageBitmap(SizeHelper.bitmapLoader(getResources(), R.drawable.main_sticks, 0.47d));
+        ivSticks.setX(100);
+        ivSticks.setY(560);
+        Toast.makeText(getApplicationContext(), "posForHD", Toast.LENGTH_LONG).show();
+    }
+
+    private void posForFHD() {
+
+        ivMainPart1.setImageBitmap(SizeHelper.bitmapLoader(getResources(), R.drawable.main_part1, 0.487d));
+        ivMainPart3.setImageBitmap(SizeHelper.bitmapLoader(getResources(), R.drawable.main_part3, 0.473d));
+        poster_1(pst.get(0), X_POSTER0_FHD, Y_POSTER0_FHD, ivPst0, 3f);
+        poster_1(pst.get(1), X_POSTER1_FHD, Y_POSTER1_FHD, ivPst1, -1f);
+        poster_1(pst.get(2), X_POSTER2_FHD, Y_POSTER2_FHD, ivPst2, 2f);
+        poster_1(pst.get(3), X_POSTER3_FHD, Y_POSTER3_FHD, ivPst3, 2.5f);
+        ivSticks.setScaleX(0.55f);
+        ivSticks.setScaleY(0.55f);
+        ivSticks.setX(-65);
+        ivSticks.setY(515);
+        ivSticks.setImageResource(R.drawable.main_sticks);
+    }
+
+
     private void poster_1(String pst_cur, int x_location, int y_location, ImageView iv, float angle) {
         byte[] decodedString = Base64.decode(pst_cur.getBytes(), Base64.DEFAULT);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(decodedByte.getWidth(), decodedByte.getHeight());
-        iv.setScaleX(1.2f);
-        iv.setScaleY(1.2f);
+        if (sizeHelper.getScreenType() == SizeHelper.SCREEN_FULLHD){
+            iv.setScaleX(1.4f);
+            iv.setScaleY(1.4f);
+        }
+        if (sizeHelper.getScreenType() == SizeHelper.SCREEN_HD){
+            iv.setScaleX(1.0f);
+            iv.setScaleY(1.0f);
+        }
         iv.setRotation(angle);
-        iv.setImageBitmap(Bitmap.createScaledBitmap(decodedByte, W_POSTER, H_POSTER, false));
+        iv.setImageBitmap(Bitmap.createScaledBitmap(decodedByte, W_POSTER_FHD, H_POSTER_FHD, false));
         layoutParams.setMargins(x_location, y_location, 0, 0);
         iv.setLayoutParams(layoutParams);
     }
