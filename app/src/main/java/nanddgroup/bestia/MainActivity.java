@@ -21,6 +21,7 @@ import nanddgroup.bestia.Utils.JsonHelper;
 import nanddgroup.bestia.Utils.SizeHelper;
 
 public class MainActivity extends AppCompatActivity {
+    //-------------------------------------------------------------------Coorginates for FHD
     public static final int W_POSTER_FHD = 230;
     public static final int H_POSTER_FHD = 318;
 
@@ -30,12 +31,12 @@ public class MainActivity extends AppCompatActivity {
     public static final int X_POSTER1_FHD = 520;
     public static final int Y_POSTER1_FHD = 1020;
 
-    public static final int X_POSTER2_FHD = 150;
-    public static final int Y_POSTER2_FHD = 5130;
+    public static final int X_POSTER2_FHD = 160;
+    public static final int Y_POSTER2_FHD = 5160;
 
-    public static final int X_POSTER3_FHD = 558;
-    public static final int Y_POSTER3_FHD = 5122;
-//-------------------------------------------------------------------
+    public static final int X_POSTER3_FHD = 568;
+    public static final int Y_POSTER3_FHD = 5152;
+//-------------------------------------------------------------------Coorginates for HD
     public static final int X_POSTER0_HD = 116;
     public static final int Y_POSTER0_HD = 590;
 
@@ -107,13 +108,12 @@ public class MainActivity extends AppCompatActivity {
         ivSticks.setImageBitmap(SizeHelper.bitmapLoader(getResources(), R.drawable.main_sticks, 0.47d));
         ivSticks.setX(100);
         ivSticks.setY(560);
-        Toast.makeText(getApplicationContext(), "posForHD", Toast.LENGTH_LONG).show();
     }
 
     private void posForFHD() {
 
         ivMainPart1.setImageBitmap(SizeHelper.bitmapLoader(getResources(), R.drawable.main_part1, 0.487d));
-        ivMainPart3.setImageBitmap(SizeHelper.bitmapLoader(getResources(), R.drawable.main_part3, 0.473d));
+        ivMainPart3.setImageBitmap(SizeHelper.bitmapLoader(getResources(), R.drawable.main_part3, 0.4795d));
         poster_1(pst.get(0), X_POSTER0_FHD, Y_POSTER0_FHD, ivPst0, 3f);
         poster_1(pst.get(1), X_POSTER1_FHD, Y_POSTER1_FHD, ivPst1, -1f);
         poster_1(pst.get(2), X_POSTER2_FHD, Y_POSTER2_FHD, ivPst2, 2f);
