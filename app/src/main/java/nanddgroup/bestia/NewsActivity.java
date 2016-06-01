@@ -112,7 +112,8 @@ public class NewsActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            nA = new NewsAdapter(getApplicationContext(), R.layout.each_news_for_lv, alBitmaps);
+            nA = new NewsAdapter(getApplicationContext(),
+                    R.layout.each_news_for_lv, alBitmaps, NewsActivity.this);
             return null;
         }
 
