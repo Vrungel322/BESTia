@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="850px"
-    android:layout_height="1250px"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_gravity="right"
     android:layout_marginLeft="100px"
     android:orientation="vertical">
@@ -9,21 +9,24 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="top">
+
 
         <ImageView
             android:id="@+id/ivFrame"
-            android:layout_width="810px"
-            android:layout_height="1140px"
-            android:background="@drawable/news_poster_frame"
-            android:layout_gravity="center" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_gravity="top|left|center"
+            android:layout_marginTop="20dp" />
 
         <ImageView
             android:id="@+id/ivPoster"
-            android:layout_width="751px"
-            android:layout_height="1150px"
-            android:layout_gravity="center"
-            android:foregroundGravity="right" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="right"
+            android:scaleType="centerCrop" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -34,10 +37,12 @@
                 android:id="@+id/ivHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|top"
+                android:layout_gravity="top|left|center_horizontal"
                 android:layout_marginTop="10px" />
 
         </FrameLayout>
+
     </FrameLayout>
+
 </LinearLayout>
 
