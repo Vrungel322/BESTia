@@ -49,16 +49,19 @@ public class NewsAdapter extends ArrayAdapter<Bitmap> {
         ImageView ivHeader = (ImageView) rootView.findViewById(R.id.ivHeader);
 //      >>------------------------------------------------------------------------------------------
         if (SCREEN_TYPE == SizeHelper.SCREEN_FULLHD) {
-            ivPoster.setImageBitmap(scaleBitmap(alNewsPosters.get(position), 0.35d));
+            FrameLayout.LayoutParams flp_FHD = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            flp_FHD.setMargins(32, 98, 0, 0);
+            ivPoster.setImageBitmap(scaleBitmap(alNewsPosters.get(position), 1.39d));
+            ivPoster.setLayoutParams(flp_FHD);
             if (position % 2 == 0) {
-                ivHeader.setImageBitmap(SizeHelper.bitmapLoader(context.getResources(), R.drawable.news_poster_sprt_0, 0.52d));
-                ivFrame.setImageBitmap(SizeHelper.bitmapLoader(context.getResources(), R.drawable.news_poster_frame, 0.35d));
+                ivHeader.setImageBitmap(SizeHelper.bitmapLoader(context.getResources(), R.drawable.news_poster_sprt_0, 0.452d));
+                ivFrame.setImageBitmap(SizeHelper.bitmapLoader(context.getResources(), R.drawable.news_poster_frame, 0.46d));
                 ivFrame.setRotation(1f);
                 ivPoster.setRotation(1f);
             }
             else {
-                ivHeader.setImageBitmap(SizeHelper.bitmapLoader(context.getResources(), R.drawable.news_poster_sprt_1, 0.5d));
-                ivFrame.setImageBitmap(SizeHelper.bitmapLoader(context.getResources(), R.drawable.news_poster_frame, 0.35d));
+                ivHeader.setImageBitmap(SizeHelper.bitmapLoader(context.getResources(), R.drawable.news_poster_sprt_1, 0.452d));
+                ivFrame.setImageBitmap(SizeHelper.bitmapLoader(context.getResources(), R.drawable.news_poster_frame, 0.46d));
                 ivFrame.setRotation(-0.7f);
                 ivPoster.setRotation(-0.7f);
             }
@@ -66,10 +69,10 @@ public class NewsAdapter extends ArrayAdapter<Bitmap> {
 
 //      >>------------------------------------------------------------------------------------------
         if (SCREEN_TYPE == SizeHelper.SCREEN_HD) {
-            FrameLayout.LayoutParams flp = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            flp.setMargins(23, 63, 0, 0);
+            FrameLayout.LayoutParams flp_HD = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            flp_HD.setMargins(21, 63, 0, 0);
             ivPoster.setImageBitmap(scaleBitmap(alNewsPosters.get(position), 0.925d));
-            ivPoster.setLayoutParams(flp);
+            ivPoster.setLayoutParams(flp_HD);
             if (position % 2 == 0) {
                 ivHeader.setImageBitmap(SizeHelper.bitmapLoader(context.getResources(), R.drawable.news_poster_sprt_0, 0.45d));
                 ivFrame.setImageBitmap(SizeHelper.bitmapLoader(context.getResources(), R.drawable.news_poster_frame, 0.46d));
