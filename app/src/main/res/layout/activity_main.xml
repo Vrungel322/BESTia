@@ -14,22 +14,29 @@
 
         <ScrollView
             android:id="@+id/scrollView"
-            android:paddingTop="-440dp"
-            android:paddingBottom="-440dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="-240dp"
+            android:paddingTop="-240dp"
             android:scrollbars="none">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:paddingTop="30dp"
-                android:paddingBottom="30dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingBottom="30dp">
+
+                <ImageView
+                    android:id="@+id/ivMainPart0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/main_part0"/>
 
                 <ImageView
                     android:id="@+id/ivMainPart1"
                     android:layout_width="wrap_content"
                     android:layout_height="1100dp"
+                    android:layout_below="@+id/ivMainPart0"
                     android:background="@drawable/main_part1"
                     android:scaleType="fitXY" />
 
@@ -53,37 +60,37 @@
                     android:id="@+id/ivPst0"
                     android:layout_width="@dimen/poster_w"
                     android:layout_height="@dimen/poster_h"
+                    android:layout_gravity="right"
                     android:layout_marginLeft="60dp"
-                    android:layout_marginTop="300dp"
-                    android:layout_gravity="right" />
+                    android:layout_marginTop="340dp" />
 
                 <ImageView
                     android:id="@+id/ivPst1"
                     android:layout_width="@dimen/poster_w"
                     android:layout_height="@dimen/poster_h"
                     android:layout_marginLeft="160dp"
-                    android:layout_marginTop="320dp" />
+                    android:layout_marginTop="360dp" />
 
                 <ImageView
                     android:id="@+id/ivPst2"
                     android:layout_width="@dimen/poster_w"
                     android:layout_height="@dimen/poster_h"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginTop="1720dp" />
+                    android:layout_marginTop="1760dp" />
 
                 <ImageView
                     android:id="@+id/ivPst3"
                     android:layout_width="@dimen/poster_w"
                     android:layout_height="@dimen/poster_h"
                     android:layout_marginLeft="175dp"
-                    android:layout_marginTop="1715dp"/>
+                    android:layout_marginTop="1755dp" />
 
                 <ImageView
                     android:id="@+id/ivSticks"
                     android:layout_width="@dimen/sticks_w"
                     android:layout_height="@dimen/sticks_h"
                     android:layout_marginLeft="55dp"
-                    android:layout_marginTop="290dp"
+                    android:layout_marginTop="320dp"
                     android:background="@drawable/main_sticks" />
 
                 <Button
