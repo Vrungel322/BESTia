@@ -89,8 +89,6 @@ public class MainActivity extends AppCompatActivity {
         poster_1(pst.get(3), ivPst3, 2.5f);
 
 
-
-
     }
 
     @OnClick(R.id.bNews)

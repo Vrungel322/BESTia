@@ -1,48 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="right"
-    android:layout_marginLeft="100px"
-    android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:paddingTop="4dp">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="top">
+    <ImageView
+        android:id="@+id/ivPoster"
+        android:layout_marginTop="30dp"
+        android:layout_width="285dp"
+        android:scaleType="fitXY"
+        android:layout_height="380dp"
+        android:paddingLeft="10dp" />
+
+    <ImageView
+        android:id="@+id/ivFrame"
+        android:layout_width="295dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/news_poster_frame"
+        android:scaleType="fitXY" />
+
+    <ImageView
+        android:id="@+id/ivHeader"
+        android:layout_width="295dp"
+        android:layout_height="460dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitXY" />
 
 
-        <ImageView
-            android:id="@+id/ivFrame"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentStart="false"
-            android:layout_gravity="top|left|center"
-            android:layout_marginTop="20dp" />
+</RelativeLayout>
 
-        <ImageView
-            android:id="@+id/ivPoster"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:foregroundGravity="right"
-            android:scaleType="centerCrop" />
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center">
-
-            <ImageView
-                android:id="@+id/ivHeader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|left|center_horizontal"
-                android:layout_marginTop="10px" />
-
-        </FrameLayout>
-
-    </FrameLayout>
-
-</LinearLayout>
 

@@ -3,6 +3,6 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="bnewsClicked">#0b9dd2ea</color>
-    <color name="bnewsRegular">#14ea6d6d</color>
+    <color name="bnewsClicked">#149dd2ea</color>
+    <color name="bnewsRegular">#14da8585</color>
 </resources>
