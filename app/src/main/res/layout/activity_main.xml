@@ -28,7 +28,7 @@
                 <ImageView
                     android:id="@+id/ivMainPart0"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="20dp"
                     android:scaleType="fitXY"
                     android:background="@drawable/main_part0"/>
 
@@ -62,43 +62,43 @@
                     android:layout_height="@dimen/poster_h"
                     android:layout_gravity="right"
                     android:layout_marginLeft="60dp"
-                    android:layout_marginTop="340dp" />
+                    android:layout_marginTop="320dp" />
 
                 <ImageView
                     android:id="@+id/ivPst1"
                     android:layout_width="@dimen/poster_w"
                     android:layout_height="@dimen/poster_h"
                     android:layout_marginLeft="160dp"
-                    android:layout_marginTop="360dp" />
+                    android:layout_marginTop="340dp" />
 
                 <ImageView
                     android:id="@+id/ivPst2"
                     android:layout_width="@dimen/poster_w"
                     android:layout_height="@dimen/poster_h"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginTop="1760dp" />
+                    android:layout_marginTop="1740dp" />
 
                 <ImageView
                     android:id="@+id/ivPst3"
                     android:layout_width="@dimen/poster_w"
                     android:layout_height="@dimen/poster_h"
                     android:layout_marginLeft="175dp"
-                    android:layout_marginTop="1755dp" />
+                    android:layout_marginTop="1735dp" />
 
                 <ImageView
                     android:id="@+id/ivSticks"
                     android:layout_width="@dimen/sticks_w"
                     android:layout_height="@dimen/sticks_h"
                     android:layout_marginLeft="55dp"
-                    android:layout_marginTop="320dp"
+                    android:layout_marginTop="310dp"
                     android:background="@drawable/main_sticks" />
 
                 <Button
                     android:id="@+id/bNews"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:layout_marginTop="220dp"
-                    android:background="@drawable/news_button_style" />
+                    android:layout_marginTop="260dp"
+                    android:background="#00ffffff"/>
 
             </RelativeLayout>
         </ScrollView>

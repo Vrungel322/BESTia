@@ -4,8 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +19,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import nanddgroup.bestia.Utils.JsonHelper;
 import nanddgroup.bestia.Utils.NewsAdapter;
 
@@ -31,12 +30,12 @@ public class NewsActivity extends AppCompatActivity {
     ImageView news;
     @Bind(R.id.bBackToMain)
     Button bBackToMain;
+    @Bind(R.id.lvNews)
+    ListView lvNews;
     private NewsAdapter nA;
     private ArrayList<String> pst;
     private String json;
     private ArrayList<Bitmap> alBitmaps;
-    @Bind(R.id.lvNews)
-    ListView lvNews;
 
 
     @Override
@@ -47,6 +46,8 @@ public class NewsActivity extends AppCompatActivity {
         this.overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
         pst = new ArrayList<String>();
         alBitmaps = new ArrayList<Bitmap>();
+        lvNews.setDivider(null);
+        OverScrollDecoratorHelper.setUpOverScroll(lvNews);
         MyAsyncTask myAsyncTask = new MyAsyncTask();
         myAsyncTask.execute();
     }
@@ -71,17 +72,6 @@ public class NewsActivity extends AppCompatActivity {
         finish();
     }
 
-    private void initMainBackground() {
-        Drawable myDrawable = getResources().getDrawable(R.drawable.news);
-        Bitmap news_background = ((BitmapDrawable) myDrawable).getBitmap();
-        news.setImageBitmap(Bitmap.createScaledBitmap(news_background,
-                getWindowManager().getDefaultDisplay().getWidth(),
-                getWindowManager().getDefaultDisplay().getHeight(), true));
-
-        Drawable myDrawable1 = getResources().getDrawable(R.drawable.news_best);
-        Bitmap news_background1 = ((BitmapDrawable) myDrawable1).getBitmap();
-        news_best.setImageBitmap(news_background1);
-    }
 
     private class MyAsyncTask extends AsyncTask {
         ProgressDialog mProgressDialog;
@@ -89,7 +79,6 @@ public class NewsActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            initMainBackground();
             if (mProgressDialog != null) {
                 mProgressDialog.dismiss();
             } else {
