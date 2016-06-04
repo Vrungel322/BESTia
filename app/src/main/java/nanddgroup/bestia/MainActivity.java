@@ -9,14 +9,14 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.widget.ScrollView;
 
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import nanddgroup.bestia.Utils.JsonHelper;
 import nanddgroup.bestia.Utils.SizeHelper;
 
@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView ivSticks;
     @Bind(R.id.bNews)
     Button bNews;
+    @Bind(R.id.scrollView)
+    ScrollView scrollView;
     private ArrayList<String> pst;
     private String json;
     private SizeHelper sizeHelper;
@@ -79,13 +81,13 @@ public class MainActivity extends AppCompatActivity {
         pst = new ArrayList<String>();
         json = JsonHelper.loadJSONFromAsset(getApplicationContext(), "uk-main.json");
         pst = JsonHelper.getB64DataFromJson(json);
-        sizeHelper = new SizeHelper(this);
-        if (sizeHelper.getScreenType() == SizeHelper.SCREEN_FULLHD){
-            posForFHD();
-        }
-        if (sizeHelper.getScreenType() == SizeHelper.SCREEN_HD){
-            posForHD();
-        }
+        OverScrollDecoratorHelper.setUpOverScroll(scrollView);
+
+        poster_1(pst.get(0),ivPst0, 3f);
+        poster_1(pst.get(1), ivPst1, -1f);
+        poster_1(pst.get(2), ivPst2, 2f);
+        poster_1(pst.get(3), ivPst3, 2.5f);
+
 
 
 
@@ -98,50 +100,12 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    private void posForHD() {
-        ivMainPart1.setImageBitmap(SizeHelper.bitmapLoader(getResources(), R.drawable.main_part1, 0.479d));
-        ivMainPart3.setImageBitmap(SizeHelper.bitmapLoader(getResources(), R.drawable.main_part3, 0.479d));
-        poster_1(pst.get(0), X_POSTER0_HD, Y_POSTER0_HD, ivPst0, 3f);
-        poster_1(pst.get(1), X_POSTER1_HD, Y_POSTER1_HD, ivPst1, -1f);
-        poster_1(pst.get(2), X_POSTER2_HD, Y_POSTER2_HD, ivPst2, 2f);
-        poster_1(pst.get(3), X_POSTER3_HD, Y_POSTER3_HD, ivPst3, 2.5f);
-        ivSticks.setImageBitmap(SizeHelper.bitmapLoader(getResources(), R.drawable.main_sticks, 0.47d));
-        ivSticks.setX(100);
-        ivSticks.setY(560);
-    }
 
-    private void posForFHD() {
-
-        ivMainPart1.setImageBitmap(SizeHelper.bitmapLoader(getResources(), R.drawable.main_part1, 0.487d));
-        ivMainPart3.setImageBitmap(SizeHelper.bitmapLoader(getResources(), R.drawable.main_part3, 0.4795d));
-        poster_1(pst.get(0), X_POSTER0_FHD, Y_POSTER0_FHD, ivPst0, 3f);
-        poster_1(pst.get(1), X_POSTER1_FHD, Y_POSTER1_FHD, ivPst1, -1f);
-        poster_1(pst.get(2), X_POSTER2_FHD, Y_POSTER2_FHD, ivPst2, 2f);
-        poster_1(pst.get(3), X_POSTER3_FHD, Y_POSTER3_FHD, ivPst3, 2.5f);
-        ivSticks.setScaleX(0.55f);
-        ivSticks.setScaleY(0.55f);
-        ivSticks.setX(-65);
-        ivSticks.setY(515);
-        ivSticks.setImageResource(R.drawable.main_sticks);
-    }
-
-
-    private void poster_1(String pst_cur, int x_location, int y_location, ImageView iv, float angle) {
+    private void poster_1(String pst_cur, ImageView iv, float angle) {
         byte[] decodedString = Base64.decode(pst_cur.getBytes(), Base64.DEFAULT);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(decodedByte.getWidth(), decodedByte.getHeight());
-        if (sizeHelper.getScreenType() == SizeHelper.SCREEN_FULLHD){
-            iv.setScaleX(1.4f);
-            iv.setScaleY(1.4f);
-        }
-        if (sizeHelper.getScreenType() == SizeHelper.SCREEN_HD){
-            iv.setScaleX(1.0f);
-            iv.setScaleY(1.0f);
-        }
         iv.setRotation(angle);
-        iv.setImageBitmap(Bitmap.createScaledBitmap(decodedByte, W_POSTER_FHD, H_POSTER_FHD, false));
-        layoutParams.setMargins(x_location, y_location, 0, 0);
-        iv.setLayoutParams(layoutParams);
+        iv.setImageBitmap(decodedByte);
     }
 
 }
