@@ -3,12 +3,18 @@ package nanddgroup.bestia.Utils;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 import java.util.ArrayList;
 
 import nanddgroup.bestia.R;
@@ -19,8 +25,8 @@ import nanddgroup.bestia.R;
 public class NewsAdapter extends ArrayAdapter<Bitmap> {
     private Context context;
     private ArrayList<Bitmap> alNewsPosters;
-    private SizeHelper sizeHelper;
     private Activity activity;
+    private FileCache fc;
 
 
     public NewsAdapter(Context context, int resource, ArrayList<Bitmap> alNewsPosters, Activity activity) {
@@ -28,22 +34,39 @@ public class NewsAdapter extends ArrayAdapter<Bitmap> {
         this.context = context;
         this.alNewsPosters = alNewsPosters;
         this.activity = activity;
+        fc = new FileCache(context);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View rootView = null;
         if (convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             rootView = inflater.inflate(R.layout.each_news_for_lv, parent, false);
+            Log.wtf("h_w", "cV = null");
         }
         else {
             rootView = convertView;
         }
         ImageView ivFrame = (ImageView) rootView.findViewById(R.id.ivFrame);
-        ImageView ivPoster = (ImageView) rootView.findViewById(R.id.ivPoster);
+        final ImageView ivPoster = (ImageView) rootView.findViewById(R.id.ivPoster);
         ImageView ivHeader = (ImageView) rootView.findViewById(R.id.ivHeader);
-        ivPoster.setImageBitmap(alNewsPosters.get(position));
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+//                        ivPoster.setImageBitmap(alNewsPosters.get(position));
+                        Picasso.with(context).
+                                load(Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/" + "BESTia" + "/" + position + ".png")))
+                                .into(ivPoster);
+                    }
+                });
+            }
+        }).start();
+
         if (position % 2 == 0) {
             ivHeader.setImageResource(R.drawable.news_poster_sprt_0);
             ivFrame.setRotation(1f);
