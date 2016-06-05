@@ -18,36 +18,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import nanddgroup.bestia.Utils.JsonHelper;
-import nanddgroup.bestia.Utils.SizeHelper;
 
 public class MainActivity extends AppCompatActivity {
-    //-------------------------------------------------------------------Coorginates for FHD
-    public static final int W_POSTER_FHD = 230;
-    public static final int H_POSTER_FHD = 318;
-
-    public static final int X_POSTER0_FHD = 246;
-    public static final int Y_POSTER0_FHD = 960;
-
-    public static final int X_POSTER1_FHD = 520;
-    public static final int Y_POSTER1_FHD = 1020;
-
-    public static final int X_POSTER2_FHD = 160;
-    public static final int Y_POSTER2_FHD = 5160;
-
-    public static final int X_POSTER3_FHD = 568;
-    public static final int Y_POSTER3_FHD = 5152;
-//-------------------------------------------------------------------Coorginates for HD
-    public static final int X_POSTER0_HD = 116;
-    public static final int Y_POSTER0_HD = 590;
-
-    public static final int X_POSTER1_HD = 310;
-    public static final int Y_POSTER1_HD = 630;
-
-    public static final int X_POSTER2_HD = 80;
-    public static final int Y_POSTER2_HD = 3420;
-
-    public static final int X_POSTER3_HD = 345;
-    public static final int Y_POSTER3_HD = 3420;
     @Bind(R.id.ivMainPart1)
     ImageView ivMainPart1;
     @Bind(R.id.ivMainPart2)
@@ -70,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     ScrollView scrollView;
     private ArrayList<String> pst;
     private String json;
-    private SizeHelper sizeHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

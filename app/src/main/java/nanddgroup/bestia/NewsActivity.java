@@ -6,20 +6,24 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import org.json.JSONException;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
+import nanddgroup.bestia.Utils.FileCache;
 import nanddgroup.bestia.Utils.JsonHelper;
 import nanddgroup.bestia.Utils.NewsAdapter;
 
@@ -36,6 +40,8 @@ public class NewsActivity extends AppCompatActivity {
     private ArrayList<String> pst;
     private String json;
     private ArrayList<Bitmap> alBitmaps;
+    private FileCache fc;
+    private File pathToStoreImg;
 
 
     @Override
@@ -46,6 +52,7 @@ public class NewsActivity extends AppCompatActivity {
         this.overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
         pst = new ArrayList<String>();
         alBitmaps = new ArrayList<Bitmap>();
+        fc = new FileCache(getApplicationContext());
         lvNews.setDivider(null);
         OverScrollDecoratorHelper.setUpOverScroll(lvNews);
         MyAsyncTask myAsyncTask = new MyAsyncTask();
@@ -97,6 +104,8 @@ public class NewsActivity extends AppCompatActivity {
             try {
                 for (int i = 0; i < JsonHelper.getCount(json); i++) {
                     alBitmaps.add(poster_2(pst.get(i)));
+                    pathToStoreImg = new File(Environment.getExternalStorageDirectory() + File.separator + "BESTia" + File.separator + i + ".png");
+                    fc.storeBitmap(alBitmaps.get(i), pathToStoreImg);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -114,4 +123,11 @@ public class NewsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        Log.wtf("wtf", "TempDirWithNewsImg_DELETED");
+        fc = new FileCache(getApplicationContext());
+        fc.deleteDir(new File(Environment.getExternalStorageDirectory() + File.separator + "BESTia"));
+        super.onDestroy();
+    }
 }
